@@ -1,0 +1,20 @@
+server:
+  port: 10086
+spring:
+  application:
+    name: eureka-service
+eureka:
+  client:
+    fetch-registry: false #是否拉取其他服务信息，默认是true
+    register-with-eureka: false #是否注册自己的信息到EurekaService中，默认是true
+    service-url: #Eureka-Serve的地址，如果是集群需要添加其他Server的地址
+      defaultZone: http://127.0.0.1:${server.port}/eureka
+  instance:
+    prefer-ip-address: true #当调用getHostname获取实例的hostname时，返回ip而不是host名称
+    ip-address: 127.0.0.1 #指定自己的ip信息，不指定的话会自己寻找
+    instance-id: ${spring.application.name}:${server.port}
+    ## 默认格式是：`${hostname} + ${spring.application.name} + ${server.port}`
+  #####################################Eureka服务中心配置################################################
+  server:
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 10000 #每隔10秒进行一次服务列表清除（默认为60 * 1000ms）
