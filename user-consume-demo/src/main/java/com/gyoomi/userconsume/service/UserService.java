@@ -41,8 +41,7 @@ public class UserService {
         String baseUrl = "http://user-service/user/";
         List<User> list = new LinkedList<>();
         if (ids.size() > 0) {
-            //ids.stream().map(id -> restTemplate.getForObject(baseUrl + id, User.class)).forEach(list::add);
-            ids.stream().map(userDao::findById).forEach(list::add);
+            ids.stream().map(id -> restTemplate.getForObject(baseUrl + id, User.class)).forEach(list::add);
         }
         return list;
     }
