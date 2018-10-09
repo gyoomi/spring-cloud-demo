@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 /**
  * 类功能描述
  *
@@ -29,6 +31,13 @@ public class UserController {
 
     @GetMapping(value = "/{id}")
     public User findById(@PathVariable("id") Long id) {
+        try {
+            int i = new Random().nextInt(3000);
+            System.out.println("沉睡时间：" + i);
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return userService.findById(id);
     }
 }
