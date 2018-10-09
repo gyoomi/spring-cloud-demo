@@ -22,8 +22,9 @@ eureka:
     ##默认格式是：`${hostname} + ${spring.application.name} + ${server.port}`
 logging:
   level:
-    org.springframework: debug
-    com.netflix.discovery.DiscoveryClient: debug #显示拉取服务列表日志
+    org.springframework: info
+    com.netflix.discovery.DiscoveryClient: info #显示拉取服务列表日志
+    com.gyoomi: info
 ################################Ribbon重试功能配置#################################################
 user-service:
   ribbon:
