@@ -34,7 +34,7 @@ public class UserDao {
         String url = "http://user-service/user/" + id;
         User user = restTemplate.getForObject(url, User.class);
         long end = System.currentTimeMillis();
-        lg.info("访问用时：{}", (end - begin));
+        lg.info("访问用时：{} id：{}", (end - begin), id);
         return user;
     }
 

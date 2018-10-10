@@ -8,7 +8,7 @@ package com.gyoomi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 类功能描述
@@ -17,7 +17,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @version 2018/10/8 14:13
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableDiscoveryClient
 public class UserServiceDemo {
 
     public static void main(String[] args) {
