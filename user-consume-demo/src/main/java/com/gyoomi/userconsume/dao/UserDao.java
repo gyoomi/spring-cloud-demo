@@ -10,7 +10,6 @@ import com.gyoomi.userconsume.pojo.User;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,7 +24,7 @@ public class UserDao {
 
     private static final Logger lg = LoggerFactory.getLogger(UserDao.class);
 
-    @Autowired
+    //@Autowired
     private RestTemplate restTemplate;
 
     @HystrixCommand(fallbackMethod = "findByIdFallBack")

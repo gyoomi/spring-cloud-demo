@@ -7,7 +7,9 @@
 package com.gyoomi.userconsume.service;
 
 import com.gyoomi.userconsume.dao.UserDao;
+import com.gyoomi.userconsume.dao.UserFeignClient;
 import com.gyoomi.userconsume.pojo.User;
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
@@ -32,17 +34,17 @@ public class UserService {
     private DiscoveryClient discoveryClient;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private UserDao userDao;
 
     @Autowired
-    private UserDao userDao;
+    private UserFeignClient userFeignClient;
 
     public List<User> findListByIds(List<Long> ids) {
         String baseUrl = "http://user-service/user/";
         List<User> list = new LinkedList<>();
         if (ids.size() > 0) {
             // ids.stream().map(id -> restTemplate.getForObject(baseUrl + id, User.class)).forEach(list::add);
-            ids.stream().map(userDao::findById).forEach(list::add);
+            ids.stream().map(userFeignClient::findById).forEach(list::add);
         }
         return list;
     }
