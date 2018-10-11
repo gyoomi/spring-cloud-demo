@@ -8,6 +8,10 @@ zuul:
   prefix: /api #添加路由前缀
   routes:
     user-service: /user-service/** #映射路径
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  retryable: true # 开启重试
 
 #################################Eureka配置##########################################################################
 eureka:
@@ -23,6 +27,21 @@ eureka:
     ip-address: 127.0.0.1 #指定自己的ip信息，不指定的话会自己寻找
     instance-id: ${spring.application.name}:${server.port}
     ##默认格式是：`${hostname} + ${spring.application.name} + ${server.port}`
+###################################Hystrix配置########################################################3
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 6000  #熔断超时时长：6000ms
+##################################Ribbon配置########################################################
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 3000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 2 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数
 logging:
   level:
     org.springframework: info
