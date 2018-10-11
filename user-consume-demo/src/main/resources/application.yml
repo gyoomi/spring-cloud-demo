@@ -33,8 +33,8 @@ user-service:
     OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
     MaxAutoRetriesNextServer: 2 # 切换实例的重试次数
     MaxAutoRetries: 1 # 对当前实例的重试次数
-#################################################################################################
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000 #设置hystrix的超时时间为6000ms
+##################################Hystrix配置###############################################################
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000 #设置hystrix的超时时间为6000ms
 #hystrix:
 #  command:
 #    default:
@@ -44,3 +44,9 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000 #
 #        isolation:
 #          thread:
 #            timeoutInMillisecond: 100000 #设置hystrix的超时时间为6000ms
+################################Feign配置#############################################################
+feign:
+  hystrix:
+    enabled: true #开启Feign的熔断功能
+
+
