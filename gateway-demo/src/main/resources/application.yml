@@ -1,0 +1,30 @@
+server:
+  port: 20000
+spring:
+  application:
+    name: api-gateway
+#################################Zuul配置#################################################################################
+zuul:
+  routes:
+    user-service: #这里是路由的id,随意写
+      path: /user-service/** #这里是映射路径
+      url: user-service #指定的服务名
+#################################Eureka配置##########################################################################
+eureka:
+  client:
+    fetch-registry: true #是否拉取其他服务信息，默认是true
+    register-with-eureka: true #是否注册自己的信息到EurekaService中，默认是true
+    service-url: #Eureka-Serve的地址，如果是集群需要添加其他Server的地址
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+    ################################服务消费者默认从eureka中获取服务列表的频率##########################################
+    registry-fetch-interval-seconds: 8 #默认`每隔30秒`会重新获取并更新数据
+  instance:
+    prefer-ip-address: true #当调用getHostname获取实例的hostname时，返回ip而不是host名称
+    ip-address: 127.0.0.1 #指定自己的ip信息，不指定的话会自己寻找
+    instance-id: ${spring.application.name}:${server.port}
+    ##默认格式是：`${hostname} + ${spring.application.name} + ${server.port}`
+logging:
+  level:
+    org.springframework: info
+    com.netflix.discovery.DiscoveryClient: info #显示拉取服务列表日志
+    com.gyoomi: info
