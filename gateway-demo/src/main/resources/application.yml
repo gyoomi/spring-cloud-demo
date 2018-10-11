@@ -8,7 +8,7 @@ zuul:
   routes:
     user-service: #这里是路由的id,随意写
       path: /user-service/** #这里是映射路径
-      url: user-service #指定的服务名
+      serviceId: user-service #指定的服务名
 #################################Eureka配置##########################################################################
 eureka:
   client:
