@@ -34,7 +34,7 @@ user-service:
     MaxAutoRetriesNextServer: 2 # 切换实例的重试次数
     MaxAutoRetries: 1 # 对当前实例的重试次数
 ##################################Hystrix配置###############################################################
-#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000 #设置hystrix的超时时间为6000ms
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000 #设置hystrix的超时时间为6000ms
 #hystrix:
 #  command:
 #    default:
@@ -46,6 +46,13 @@ user-service:
 #            timeoutInMillisecond: 100000 #设置hystrix的超时时间为6000ms
 ################################Feign配置#############################################################
 feign:
+  compression:
+    request:
+      enabled: true #开启请求压缩
+      mime-type: text/html,application/xml,application/json #设置压缩的数据类型
+      min-request-size: 2048 #设置触发压缩的大小下限
+    response:
+      enabled: true #开启响应压缩
   hystrix:
     enabled: true #开启Feign的熔断功能
 
