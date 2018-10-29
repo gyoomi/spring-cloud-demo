@@ -56,4 +56,12 @@ feign:
   hystrix:
     enabled: true #开启Feign的熔断功能
 
+###########actuator配置##############################################
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream  #开放所有页面节点  默认只开启了health、info两个节点
+      base-path: / #修改访问路径  2.0之前默认是/   2.0默认是 /actuator  可以通过这个属性值修改
+
 
