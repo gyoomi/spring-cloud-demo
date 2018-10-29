@@ -8,8 +8,8 @@ package com.gyoomi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.retry.annotation.EnableRetry;
 
@@ -19,9 +19,9 @@ import org.springframework.retry.annotation.EnableRetry;
  * @author Leon
  * @version 2018/10/8 15:33
  */
+@EnableHystrix
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableCircuitBreaker
 @EnableRetry
 @EnableFeignClients
 public class UserConsumeDemo {
